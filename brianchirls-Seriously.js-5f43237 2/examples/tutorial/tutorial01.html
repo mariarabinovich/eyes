@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head><title>Seriously.js Tutorial</title>
+
+
+<script type=text/javascript>  
+
+
+
+
+
+</script>
+
+
+
+
+</head>
+<body>
+	<!-- page content goes here -->
+		
+<video id="colorbars" autoplay="autoplay">	video width="560" height="340" controls>
+	  <source src="../images/colorbars.webm" type='video/webm'> 
+	 
+	</video>
+	
+	
+	
+	
+	<canvas id="canvas" width="640" height="480" onmousemove="point_it(event)" ></canvas>
+	<div>
+
+
+	
+	</div>
+
+
+<form name="pointform" method="post">
+You pointed on x = <input type="range" name="form_x" size="0" id="vignette-range" min="0" max="100" step="0.0001"/> - y = <input type="text" name="form_y" size="4" />
+	
+<script src="slider.js"></script>
+	<script src="../../seriously.js"></script>
+	<script src="../../effects/seriously.vignette.js"></script>
+	<script src="../../effects/seriously.hue-saturation.js"></script>
+	<script src="../../effects/seriously.split.js"></script>
+
+
+
+	<script type=text/javascript>
+
+
+
+
+
+ 
+	
+//var value;
+
+
+
+
+		function point_it(event){
+			pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("canvas").offsetLeft;
+			pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("canvas").offsetTop;
+
+			document.getElementById("canvas").style.left = (pos_x-1) ;
+			document.getElementById("canvas").style.top = (pos_y-15) ;
+			document.getElementById("canvas").style.visibility = "nonvisible" ;
+			document.pointform.form_x.value = pos_x;
+			document.pointform.form_y.value = pos_y;
+			document.form_x=pos_x;
+			//value= pos_x;
+			//value = mapRange(form_x,1,40);
+			//vignette.amount = '#vignette-range';
+			//return value;
+					}
+						
+					
+function mapRange(t, from, to) {
+	return to+(t-from)*(to)/(from);
+}
+
+
+
+	
+	
+	(function () {
+		//main code goes here
+		
+		
+
+
+		
+		
+		
+		
+
+
+
+		// declare our variables
+		var seriously, // the main object that holds the entire composition
+			colorbars, // a wrapper object for our source image
+			vignette, // a vignette effect
+			target; // a wrapper object for our target canvas
+
+		seriously = new Seriously();
+		colorbars = seriously.source('#colorbars');
+		target = seriously.target('#canvas');
+		vignette = seriously.effect('vignette');
+
+
+		vignette.amount = '#vignette-range';
+		
+			//vignette.amount = document.getElementById("pointform").form_x.value;
+		
+		
+		// connect all our nodes in the right order
+		vignette.source = colorbars;
+		target.source = vignette;
+		seriously.go();
+
+	}());
+	
+	
+            
+            
+            
+            
+            
+            
+      
+          	
+	
+	
+	</script>
+	
+
+
+</body>
+</html>

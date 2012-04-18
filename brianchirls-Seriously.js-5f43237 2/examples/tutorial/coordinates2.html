@@ -1,0 +1,24 @@
+<html>
+<head>
+<script language="JavaScript">
+function point_it(event){
+	pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("canvas").offsetLeft;
+	pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("canvas").offsetTop;
+	document.getElementById("canvas").style.left = (pos_x-1) ;
+	document.getElementById("canvas").style.top = (pos_y-15) ;
+	document.getElementById("canvas").style.visibility = "visible" ;
+	document.pointform.form_x.value = pos_x;
+	document.pointform.form_y.value = pos_y;
+}
+</script>
+</head>
+<body>
+<canvas id="canvas" width="640" height="480" onmousemove="point_it(event)"></canvas>
+
+<form name="pointform" method="post">
+You pointed on x = <input type="range" name="form_x" size="4" /> - y = <input type="text" name="form_y" size="4" />
+
+
+</form> 
+</body>
+</html>

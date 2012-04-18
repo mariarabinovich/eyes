@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Looking Eye</title>
+<style>
+body {
+    background: white;
+}
+
+#intro {
+    font-family: 'RokkittRegular';
+    src: url('rokkitt-regular-webfont.eot');
+    src: url('rokkitt-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('rokkitt-regular-webfont.woff') format('woff'),
+         url('rokkitt-regular-webfont.ttf') format('truetype'),
+         url('rokkitt-regular-webfont.svg#RokkittRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    	width:650px;
+	color:#5d5d5d;
+	font-family: 'RokkittRegular';
+	font-weight:lighter;
+	font-size:13px;
+	line-height:25px;
+	text-shadow: 0 1px 0 #fcfcfc;
+	text-align:justify;
+	margin:0;
+}
+
+#title { /*this is position of the featured main paragraph*/
+    font-family: 'RokkittRegular';
+    src: url('rokkitt-regular-webfont.eot');
+    src: url('rokkitt-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('rokkitt-regular-webfont.woff') format('woff'),
+         url('rokkitt-regular-webfont.ttf') format('truetype'),
+         url('rokkitt-regular-webfont.svg#RokkittRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+	color:#00a5f7;
+	font-size:28px;
+	font-family: 'RokkittRegular';
+	margin:0 0 30px;
+	width:490px;
+	padding:50px 0 0;
+	font-weight:lighter;
+	letter-spacing: 0.0em;
+
+}
+
+
+
+
+#c {
+    position: absolute;
+    top: 100;
+    left:100;
+    bottom: 100;
+    width: 100%;
+    height: 100%;
+    margin: 180px 0 0 240px;
+
+}
+
+#v {
+    position: absolute;
+    top: 100;
+    left:100;
+    bottom: 100;
+    width: 70%;
+    height: 70%;
+	margin: 200px 0 0 300px;
+
+}
+
+</style>
+</head>
+
+
+<body>
+<div id=title>Looking Eye</div>
+<canvas id=c></canvas>
+<video id=v loop autoplay=autoplay>
+    <source src=moscow1.webm type=video/webm>
+    <source src=snare.mp4 type=video/mp4>
+</video>
+
+<div id=intro>Looking Eye presents the image that an eye receives and the image it creates. It attempts to explore the difference between the seen and the assumed. The viewer is able to manipulate the eye movement, and in that way engages with language of the eyes, something we all employ but seldom acknowledge or understand. 
+<br><br>
+Using eye tracking technology, the video is captured with the data of the eye movement around the seen, and presented as the collage of what appears, inviting the viewer to infer what is perceived, or to re-envision the eye movement.</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    var v = document.getElementById('v');
+    var canvas = document.getElementById('c');
+    var context = canvas.getContext('2d');
+
+    var cw = Math.floor(canvas.clientWidth / 100);
+    var ch = Math.floor(canvas.clientHeight / 100);
+    canvas.width = cw;
+    canvas.height = ch;
+
+    v.addEventListener('play', function(){
+        draw(this,context,cw,ch);
+    },false);
+
+},false);
+
+function draw(v,c,w,h) {
+    if(v.paused || v.ended) return false;
+    c.drawImage(v,0,0,w,h);
+    setTimeout(draw,20,v,c,w,h);
+}
+</script>
+
+
+
+</body>
+</html>

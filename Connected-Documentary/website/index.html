@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head><title>Seriously.js Tutorial</title>
+	
+		<style type="text/css">
+
+		body {
+   			 background: white;
+		}
+
+		#main #video {
+			display: none;
+			position: absolute;
+		}
+		#c {
+	  	  position: absolute;
+		    top: 0;
+	 	   bottom: 0;
+		    left: 0;
+ 		   right: 0;
+ 		   width: 50%;
+ 		   height: 50%;
+		}
+
+		#v {
+  		  position: absolute;
+  		  top: 50%;
+   		  left: 50%;
+   		  margin: -10px 0 0 -20px;
+		}
+		</style>
+		
+</head>
+<body>
+   
+    <!-- page content goes here -->
+     <canvas width="960" height="540" id="canvas"></canvas>
+ <div id="main">
+    <!-- "Video For Everybody" http://camendesign.com/code/video_for_everybody -->
+<video class="video-js" width="960" height="540" controls preload id="video" >
+
+
+				<source src="slide.webm" type='video/webm' />
+				<source src="snare.mp4" type='video/mp4' />
+			</video>
+</div>
+
+
+
+
+
+
+    <script src="seriously.js"></script>
+    <script src="effects/seriously.vignette.js"></script>
+
+    <script>
+    //main code goes here
+    // declare our variables
+	var seriously, // the main object that holds the entire composition
+    video, // a wrapper object for our source image
+    vignette, // a vignette effect
+    target; // a wrapper object for our target canvas
+
+    seriously = new Seriously();
+	// Create a source object by passing a CSS query string.
+	video = seriously.source('#video');
+	// now do the same for the target canvas
+	target = seriously.target('#canvas');
+    vignette = seriously.effect('vignette');
+    
+    
+ // target.source = video;
+ // seriously.go();
+  
+  			
+  
+// connect any node as the source of the target. we only have one.
+vignette.source = video;
+target.source = vignette;
+seriously.go();
+    
+    </script>
+</body>
+</html>
